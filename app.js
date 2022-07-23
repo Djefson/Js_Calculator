@@ -27,8 +27,8 @@ function getFormattedNumber(num) {
   if (num == "-") {
     return "";
   }
-  var n = Number(num);
-  var value = n.toLocaleString("en");
+  let n = Number(num);
+  let value = n.toLocaleString("en");
   return value;
 }
 
@@ -39,23 +39,23 @@ function reverseNumberFormat(num) {
 
 addEventListener("DOMContentLoaded", function () {
   // listen for operator keys click events
-  var operators = document.getElementsByClassName("op__key");
-  var len = operators.length;
+  let operators = document.getElementsByClassName("op__key");
+  let len = operators.length;
   for (i = 0; i < len; i++) {
     operators[i].addEventListener("click", function () {
       if (this.id == "clear") {
         printHistoryValue("");
         printOutputValue("");
       } else if (this.id == "backspace") {
-        var output = reverseNumberFormat(getOutputValue()).toString();
+        let output = reverseNumberFormat(getOutputValue()).toString();
         // check whether output has a value then remove last character and print to UI
         if (output) {
           output = output.substr(0, output.length - 1);
           printOutputValue(output);
         }
       } else {
-        var output = getOutputValue();
-        var history = getHistoryValue();
+        let output = getOutputValue();
+        let history = getHistoryValue();
         // truncate non-numeric type last character from history value
         if (output === "" && history !== "") {
           if (isNaN(history[history.length - 1])) {
@@ -67,7 +67,7 @@ addEventListener("DOMContentLoaded", function () {
           output = output === "" ? output : reverseNumberFormat(output);
           history += output;
           if (this.id === "=") {
-            var result = eval(history);
+            let result = eval(history);
             printOutputValue(result);
             printHistoryValue("");
           } else {
@@ -81,11 +81,11 @@ addEventListener("DOMContentLoaded", function () {
   }
 
   // listen for number keys click events
-  var numbers = document.getElementsByClassName("num__key");
-  var val = numbers.length;
+  let numbers = document.getElementsByClassName("num__key");
+  let val = numbers.length;
   for (i = 0; i < val; i++) {
     numbers[i].addEventListener("click", function () {
-      var output = reverseNumberFormat(getOutputValue());
+      let output = reverseNumberFormat(getOutputValue());
       if (!isNaN(output)) {
         output += this.id;
         printOutputValue(output);
